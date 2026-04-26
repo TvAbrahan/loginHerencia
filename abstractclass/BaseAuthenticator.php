@@ -3,7 +3,6 @@
 abstract class BaseAuthenticator {
 
 
-
     abstract protected function findUser(string $email);
 
     public function login(string $email, string $password) {
@@ -14,7 +13,7 @@ abstract class BaseAuthenticator {
         }
 
     if ($user['password'] !== $password) {
-        throw new Exception("contraseña incorrecta.");
+        throw new Exception("Contraseña incorrecta.");
         }
 
     return "Bienvenido " . $user['email'];
