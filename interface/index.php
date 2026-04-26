@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Login Interface</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
