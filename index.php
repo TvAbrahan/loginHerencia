@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Login Interface</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -17,9 +17,14 @@
         <button type="submit">Ingresar</button>
     </form>
 
-    <?php if(!empty($message)): ?>
-        <p class="msg"><?= $message ?></p>
-    <?php endif; ?>
+<?php if(isset($_SESSION['flash']) && $_SESSION['flash']): ?>
+    <div class="mensaje <?= $_SESSION['flash']['tipo'] ?>">
+        <?= $_SESSION['flash']['mensaje'] ?>
+    </div>
+<?php 
+    unset($_SESSION['flash']); // se borra después de mostrarse
+endif; 
+?>
 </div>
 
 </body>

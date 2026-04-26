@@ -1,15 +1,34 @@
 <?php
+session_start();
 require_once 'MockAuth.php';
 
-$message = "";
+// Limpiar mensaje anterior
+if(!isset($_SESSION['flash'])){
+    $_SESSION['flash'] = null;
+}
 
-if($_POST){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+
     $auth = new MockAuth();
 
     try {
-        $message = $auth->login($_POST['username'], $_POST['password']);
+        $msg = $auth->login($_POST['username'], $_POST['password']);
+
+        $_SESSION['flash'] = [
+            "mensaje" => $msg,
+            "tipo" => "success"
+        ];
+
     } catch (Exception $e) {
-        $message = $e->getMessage();
+
+        $_SESSION['flash'] = [
+            "mensaje" => $e->getMessage(),
+            "tipo" => "error"
+        ];
     }
+
+    // Redirige después de guardar mensaje
+    header("Location: index.php");
+    exit();
 }
 ?>
